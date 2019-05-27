@@ -7,18 +7,15 @@ robot faces up after completing
 
 */
 
+#include <Servo.h>
 
-int main(int argc, char const *argv[]) {
+Servo myservo;  // create servo object to control a servo
+// twelve servo objects can be created on most boards
 
-char* command;
-
-    while(1) {
-        //get command from bluetooth
-        decodeCommand(command);
-
-        //wait for next command
-    }
-    return 0;
+void setup() {
+    myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+    Serial.begin(9600);
+    myservo.write(50);
 }
 
 int decodeCommand(char* command) {
@@ -138,54 +135,232 @@ int decodeCommand(char* command) {
     return 0;
 }
 
+void moveMarker(int pos) {
+ // Serial.println(command);
+  if (pos == 0) { // up
+    //Serial.println("move 0");
 
+    myservo.write(30);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+     // }
+  } else { // down
+    myservo.write(120);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+    //  }
+  }
+
+}
+
+
+/*
+turn the robot 180 degrees on marker axis
+*/
 int turn180() {
     return 0;
 }
 
+/*
+turn the robot 90 degrees on marker axis
+*/
 int turn90() {
     return 0;
 }
 
+/*
+turn the robot 90 degrees on marker axis
+*/
+int turn90Neg() {
+    return 0;
+}
+
+/*
+turn the robot 45 degrees on marker axis
+*/
 int turn45() {
     return 0;
 }
 
-int moveFoward() {
+/*
+turn the robot 45 degrees on marker axis
+*/
+int turn45Neg() {
     return 0;
 }
 
-int moveBack() {
+/*
+move the robot forward half UNIT
+*/
+int moveFowardSmall() {
     return 0;
 }
 
+/*
+move robot forward one UNIT
+*/
+int moveFowardBig() {
 
+}
+
+/*
+move the robot backwards half UNIT
+*/
+int moveBackSmall() {
+    return 0;
+}
+
+/*
+move the robot back one UNIT
+*/
 
 int drawA() {
+
+    moveMarker(1);
+    moveFowardBig();
+    turn90();
+    moveFowardSmall();
+    turn90();
+    moveFowardBig();
+    moveMarker(0);
+    moveBackSmall();
+    turn90();
+    moveMarker(1);
+    moveFowardSmall();
+    moveMarker(0);
+    moveBackSmall();
+    turn90Neg();
+    moveFowardSmall();
+    turn90Neg();
+    moveFowardSmall();
+    turn90Neg();
+
     return 0;
 }
 
 int drawB() {
+
+    moveMarker(1);
+    moveFowardBig();
+    turn90();
+    moveFowardSmall();
+    turn90();
+    moveFowardBig();
+    turn90();
+    moveFowardSmall();
+    moveMarker(0);
+    moveBackSmall();
+    turn90Neg();
+    moveBackSmall();
+    turn90();
+    moveMarker(1);
+    moveFowardSmall();
+    moveMarker(0);
+    moveBackSmall();
+    turn90Neg();
+    moveFowardSmall();
+    turn90Neg();
+    moveFowardSmall();
+    turn90Neg();
+
     return 0;
 }
 
 int drawC() {
+    moveMarker(1);
+    moveFowardBig();
+    turn90();
+    moveFowardSmall();
+    moveMarker(0);
+    turn90();
+    moveFowardBig();
+    turn90();
+    moveMarker(1);
+    moveFowardSmall();
+    moveMarker(0);
+    turn180();
+    moveFowardSmall();
+    moveFowardSmall();
+    turn90Neg();
+
     return 0;
 }
 
 int drawD() {
+
+    moveMarker(1);
+    moveFowardBig();
+    turn90();
+    moveFowardSmall();
+    turn90();
+    moveFowardBig();
+    turn90();
+    moveFowardSmall();
+    moveMarker(0);
+    turn180();
+    moveFowardSmall();
+    moveFowardSmall();
+    turn90Neg();
+
     return 0;
 }
 
 int drawE() {
+
+    moveMarker(1);
+    moveFowardBig();
+    turn90();
+    moveFowardSmall();
+    moveMarker(0);
+    turn90();
+    moveFowardSmall();
+    turm90();
+    moveMarker(1);
+    moveFowardSmall();
+    moveMarker(0);
+    moveBackSmall();
+    turn90Neg();
+    moveFowardSmall();
+    turn90();
+    moveMarker(1);
+    moveFowardSmall();
+    moveMarker(0);
+    turn180();
+    moveFowardSmall();
+    moveFowardSmall();
+
     return 0;
 }
 
 int drawF() {
+
+    moveMarker(1);
+    moveFowardBig();
+    turn90();
+    moveFowardSmall();
+    moveMarker(0);
+    turn90();
+    moveFowardSmall();
+    turn90();
+    moveMarker(1);
+    moveFowardSmall();
+    moveMarker(0);
+    moveBackSmall();
+    turn90Neg();
+    moveFowardSmall();
+    turn90Neg();
+    moveFowardSmall();
+
     return 0;
 }
 
 int drawG() {
+    moveMarker(1);
+    moveFowardBig();
+    turn90();
+    moveFowardSmall();
+    moveMarker(0);
+    turn90();
+    moveFowardSmall();
+    mo
     return 0;
 }
 
@@ -302,5 +477,19 @@ int draw8() {
 }
 
 int draw9() {
+    return 0;
+}
+
+
+int main() {
+
+    char* command;
+
+    while(1) {
+        //get command from bluetooth
+        decodeCommand(command);
+
+        //wait for next command
+    }
     return 0;
 }
