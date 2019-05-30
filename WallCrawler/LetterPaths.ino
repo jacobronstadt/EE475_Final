@@ -23,7 +23,6 @@ int drawA() {
 }
 
 int drawB() {
-
     moveMarker(1);
     moveForwardBig();
     turn90();

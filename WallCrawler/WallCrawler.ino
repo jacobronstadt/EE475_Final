@@ -13,6 +13,11 @@ robot faces up after completing
 #define RPIN1 (16)//8
 #define RPIN2 (17)//7
 
+#define ERROR (250)
+#define START (253)
+#define END (254)
+#define STATUS (252)
+
 
 //#include <SoftwareSerial.h>
 #define BTSerial (Serial2)
@@ -156,281 +161,61 @@ int decodeCommand(char command) {
     return 0;
 }
 
-void moveMarker(int pos) {
- // Serial.println(command);
-  if (pos == 1) { // up
-    //Serial.println("move 0");
-
-    myservo.write(30);              // tell servo to go to position in variable 'pos'
-    delay(15);                       // waits 15ms for the servo to reach the position
-     // }
-  } else { // down
-    myservo.write(95);              // tell servo to go to position in variable 'pos'
-    delay(15);                       // waits 15ms for the servo to reach the position
-    //  }
-  }
-
-}
-
-
-/*
-turn the robot 180 degrees on marker axis
-*/
-int turn180() {
-  delay(200);
-  digitalWrite(RPIN1, HIGH);
-  digitalWrite(RPIN2, LOW);
-  digitalWrite(LPIN1, HIGH);
-  digitalWrite(LPIN2, LOW);
-  delay(900);
-  
-  digitalWrite(RPIN1, LOW);
-  digitalWrite(RPIN2, HIGH);
-  digitalWrite(LPIN1, LOW);
-  digitalWrite(LPIN2, HIGH);
-  delay(2);
-  
-  digitalWrite(RPIN1, LOW);
-  digitalWrite(RPIN2, LOW);
-  digitalWrite(LPIN1, LOW);
-  digitalWrite(LPIN2, LOW);
-  return 0;
-}
-
-/*
-turn the robot 90 degrees on marker axis
-*/
-int turn90() {
-   delay(200);
-  digitalWrite(RPIN1, LOW);
-  digitalWrite(RPIN2, HIGH);
-  digitalWrite(LPIN1, LOW);
-  digitalWrite(LPIN2, HIGH);
-  delay(450);
-  
-  digitalWrite(RPIN1, HIGH);
-  digitalWrite(RPIN2, LOW);
-  digitalWrite(LPIN1, HIGH);
-  digitalWrite(LPIN2, LOW);
-  delay(2);
-  
-  digitalWrite(RPIN1, LOW);
-  digitalWrite(RPIN2, LOW);
-  digitalWrite(LPIN1, LOW);
-  digitalWrite(LPIN2, LOW);
-    return 0;
- 
-}
-
-/*
-turn the robot 90 degrees on marker axis
-*/
-int turn90Neg() {
-  delay(200);
-  digitalWrite(RPIN1, HIGH);
-  digitalWrite(RPIN2, LOW);
-  digitalWrite(LPIN1, HIGH);
-  digitalWrite(LPIN2, LOW);
-  delay(450);
-  
-  digitalWrite(RPIN1, LOW);
-  digitalWrite(RPIN2, HIGH);
-  digitalWrite(LPIN1, LOW);
-  digitalWrite(LPIN2, HIGH);
-  delay(2);
-  
-  digitalWrite(RPIN1, LOW);
-  digitalWrite(RPIN2, LOW);
-  digitalWrite(LPIN1, LOW);
-  digitalWrite(LPIN2, LOW);
-  return 0;
-}
-
-/*
-turn the robot 45 degrees on marker axis
-*/
-int turn45() {
-  delay(200);
-  digitalWrite(RPIN1, LOW);
-  digitalWrite(RPIN2, HIGH);
-  digitalWrite(LPIN1, LOW);
-  digitalWrite(LPIN2, HIGH);
-  delay(225);
-  
-  digitalWrite(RPIN1, HIGH);
-  digitalWrite(RPIN2, LOW);
-  digitalWrite(LPIN1, HIGH);
-  digitalWrite(LPIN2, LOW);
-  delay(2);
-  
-  digitalWrite(RPIN1, LOW);
-  digitalWrite(RPIN2, LOW);
-  digitalWrite(LPIN1, LOW);
-  digitalWrite(LPIN2, LOW);
-  return 0;
-}
-
-/*
-turn the robot 45 degrees on marker axis
-*/
-int turn45Neg() {
-    delay(200);
-  digitalWrite(RPIN1, HIGH);
-  digitalWrite(RPIN2, LOW);
-  digitalWrite(LPIN1, HIGH);
-  digitalWrite(LPIN2, LOW);
-  delay(225);
-  
-  digitalWrite(RPIN1, LOW);
-  digitalWrite(RPIN2, HIGH);
-  digitalWrite(LPIN1, LOW);
-  digitalWrite(LPIN2, HIGH);
-  delay(2);
-  
-  digitalWrite(RPIN1, LOW);
-  digitalWrite(RPIN2, LOW);
-  digitalWrite(LPIN1, LOW);
-  digitalWrite(LPIN2, LOW);
-  return 0;
-  
-}
-
-/*
-move the robot forward half UNIT
-*/
-int moveForwardSmall() {
-  delay(200);
-  digitalWrite(RPIN1, HIGH);
-  digitalWrite(RPIN2, LOW);
-  digitalWrite(LPIN1, LOW);
-  digitalWrite(LPIN2, HIGH);
-  delay(200);
-  
-  digitalWrite(RPIN1, LOW);
-  digitalWrite(RPIN2, HIGH);
-  digitalWrite(LPIN1, HIGH);
-  digitalWrite(LPIN2, LOW);
-  delay(2);
-  
-  digitalWrite(RPIN1, LOW);
-  digitalWrite(RPIN2, LOW);
-  digitalWrite(LPIN1, LOW);
-  digitalWrite(LPIN2, LOW);
-  return 0;
-}
-
-/*
-move robot forward one UNIT
-*/
-int moveForwardBig() {
-  delay(200);
-  digitalWrite(RPIN1, HIGH);
-  digitalWrite(RPIN2, LOW);
-  digitalWrite(LPIN1, LOW);
-  digitalWrite(LPIN2, HIGH);
-  delay(400);
-  
-  digitalWrite(RPIN1, LOW);
-  digitalWrite(RPIN2, HIGH);
-  digitalWrite(LPIN1, HIGH);
-  digitalWrite(LPIN2, LOW);
-  delay(2);
-  
-  digitalWrite(RPIN1, LOW);
-  digitalWrite(RPIN2, LOW);
-  digitalWrite(LPIN1, LOW);
-  digitalWrite(LPIN2, LOW);
-  return 0;
-}
-
-/*
-move the robot backwards half UNIT
-*/
-int moveBackSmall() {
-     delay(200);
-    digitalWrite(RPIN1, LOW);
-    digitalWrite(RPIN2, HIGH);
-    digitalWrite(LPIN1, HIGH);
-    digitalWrite(LPIN2, LOW);
-    delay(200);
-    
-    digitalWrite(RPIN1, HIGH);
-    digitalWrite(RPIN2, LOW);
-    digitalWrite(LPIN1, LOW);
-    digitalWrite(LPIN2, HIGH);
-    delay(2);
-    
-    digitalWrite(RPIN1, LOW);
-    digitalWrite(RPIN2, LOW);
-    digitalWrite(LPIN1, LOW);
-    digitalWrite(LPIN2, LOW);
-  return 0;
-}
-
-/*
-move the robot back one UNIT
-*/
-int moveBackBig() {
-     delay(400);
-    digitalWrite(RPIN1, LOW);
-    digitalWrite(RPIN2, HIGH);
-    digitalWrite(LPIN1, HIGH);
-    digitalWrite(LPIN2, LOW);
-    delay(450);
-    
-    digitalWrite(RPIN1, HIGH);
-    digitalWrite(RPIN2, LOW);
-    digitalWrite(LPIN1, LOW);
-    digitalWrite(LPIN2, HIGH);
-    delay(2);
-    
-    digitalWrite(RPIN1, LOW);
-    digitalWrite(RPIN2, LOW);
-    digitalWrite(LPIN1, LOW);
-    digitalWrite(LPIN2, LOW);
-}
-
-
 
 
    
 byte command;
 int i = 0;
 char commandArr[5] = {0,0,0,0,0};
+int sysTime;
 
 void loop() {
+  sysTime = millis();
   if(BTSerial.available() > 0 ){
       command = BTSerial.read();
       
-      if(i < 5){
-          if (command == 253) {
-            //start
-            for(int k = 0; k < 5; k++) {
-              commandArr[k] = 0;
-            }
-            i=0;
-          } else if(command == 254) {
-            //end
-             commandArr[i+1] = '\n';
-              
-//             for (int j=0; j < i; j++){
-//              decodeCommand(commandArr[j]);
-//              Serial.print(commandArr[j]);
-//             }
-//             Serial.println();
-
-             Serial.println("length: ");
-             Serial.println(i);
-             String str(commandArr);
-             Serial.print("string: ");
-             Serial.println(str);
-             commands(str);
-             
-          } else {
-            commandArr[i] = command;
-            i++;
-        }
+    
+    if (command == START) {
+      //start
+      Serial.println("transmission start ");
+      for(int k = 0; k < 5; k++) {
+        commandArr[k] = 0;
       }
+      i=0;
+    } else if(command == END) {
+      //end
+       Serial.println("transmission end");
+      
+       commandArr[i+1] = '\n';
+       BTSerial.write(START);
+       Serial.print("Writing: ");
+       for (int j=0; j < i; j++){
+           int letterDone = 0;
+          //decodeCommand(commandArr[j]);
+          // letterDone = decodeCommand(commandArr[j]);
+          Serial.print(commandArr[j]);
+          if(letterDone == 1) {
+            BTSerial.write(ERROR);
+          }
+       }
+       BTSerial.write(END);
+      
+       Serial.println(); 
+       Serial.println("length: ");
+       Serial.println(i);
+      //---
+       String str(commandArr);
+       Serial.print("string: ");
+       Serial.println(str);
+       commands(str);
+       Serial.println();
+       Serial.println();
+        
+    } else {
+      commandArr[i] = command;
+      i++;
+    }
+
     
       
       Serial.print("recieved: ");

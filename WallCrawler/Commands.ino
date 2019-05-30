@@ -106,3 +106,238 @@ void commands(String command) {
       
     }
 }
+
+
+/*
+turn the robot 180 degrees on marker axis
+*/
+int turn180() {
+  delay(200);
+  digitalWrite(RPIN1, HIGH);
+  digitalWrite(RPIN2, LOW);
+  digitalWrite(LPIN1, HIGH);
+  digitalWrite(LPIN2, LOW);
+  delay(900);
+  
+  digitalWrite(RPIN1, LOW);
+  digitalWrite(RPIN2, HIGH);
+  digitalWrite(LPIN1, LOW);
+  digitalWrite(LPIN2, HIGH);
+  delay(2);
+  
+  digitalWrite(RPIN1, LOW);
+  digitalWrite(RPIN2, LOW);
+  digitalWrite(LPIN1, LOW);
+  digitalWrite(LPIN2, LOW);
+  return 0;
+}
+
+/*
+turn the robot 90 degrees on marker axis
+*/
+int turn90() {
+   delay(200);
+  digitalWrite(RPIN1, LOW);
+  digitalWrite(RPIN2, HIGH);
+  digitalWrite(LPIN1, LOW);
+  digitalWrite(LPIN2, HIGH);
+  delay(450);
+  
+  digitalWrite(RPIN1, HIGH);
+  digitalWrite(RPIN2, LOW);
+  digitalWrite(LPIN1, HIGH);
+  digitalWrite(LPIN2, LOW);
+  delay(2);
+  
+  digitalWrite(RPIN1, LOW);
+  digitalWrite(RPIN2, LOW);
+  digitalWrite(LPIN1, LOW);
+  digitalWrite(LPIN2, LOW);
+    return 0;
+ 
+}
+
+/*
+turn the robot 90 degrees on marker axis
+*/
+int turn90Neg() {
+  delay(200);
+  digitalWrite(RPIN1, HIGH);
+  digitalWrite(RPIN2, LOW);
+  digitalWrite(LPIN1, HIGH);
+  digitalWrite(LPIN2, LOW);
+  delay(450);
+  
+  digitalWrite(RPIN1, LOW);
+  digitalWrite(RPIN2, HIGH);
+  digitalWrite(LPIN1, LOW);
+  digitalWrite(LPIN2, HIGH);
+  delay(2);
+  
+  digitalWrite(RPIN1, LOW);
+  digitalWrite(RPIN2, LOW);
+  digitalWrite(LPIN1, LOW);
+  digitalWrite(LPIN2, LOW);
+  return 0;
+}
+
+/*
+turn the robot 45 degrees on marker axis
+*/
+int turn45() {
+  delay(200);
+  digitalWrite(RPIN1, LOW);
+  digitalWrite(RPIN2, HIGH);
+  digitalWrite(LPIN1, LOW);
+  digitalWrite(LPIN2, HIGH);
+  delay(225);
+  
+  digitalWrite(RPIN1, HIGH);
+  digitalWrite(RPIN2, LOW);
+  digitalWrite(LPIN1, HIGH);
+  digitalWrite(LPIN2, LOW);
+  delay(2);
+  
+  digitalWrite(RPIN1, LOW);
+  digitalWrite(RPIN2, LOW);
+  digitalWrite(LPIN1, LOW);
+  digitalWrite(LPIN2, LOW);
+  return 0;
+}
+
+/*
+turn the robot 45 degrees on marker axis
+*/
+int turn45Neg() {
+    delay(200);
+  digitalWrite(RPIN1, HIGH);
+  digitalWrite(RPIN2, LOW);
+  digitalWrite(LPIN1, HIGH);
+  digitalWrite(LPIN2, LOW);
+  delay(225);
+  
+  digitalWrite(RPIN1, LOW);
+  digitalWrite(RPIN2, HIGH);
+  digitalWrite(LPIN1, LOW);
+  digitalWrite(LPIN2, HIGH);
+  delay(2);
+  
+  digitalWrite(RPIN1, LOW);
+  digitalWrite(RPIN2, LOW);
+  digitalWrite(LPIN1, LOW);
+  digitalWrite(LPIN2, LOW);
+  return 0;
+  
+}
+
+/*
+move the robot forward half UNIT
+*/
+int moveForwardSmall() {
+  delay(200);
+  digitalWrite(RPIN1, HIGH);
+  digitalWrite(RPIN2, LOW);
+  digitalWrite(LPIN1, LOW);
+  digitalWrite(LPIN2, HIGH);
+  delay(200);
+  
+  digitalWrite(RPIN1, LOW);
+  digitalWrite(RPIN2, HIGH);
+  digitalWrite(LPIN1, HIGH);
+  digitalWrite(LPIN2, LOW);
+  delay(2);
+  
+  digitalWrite(RPIN1, LOW);
+  digitalWrite(RPIN2, LOW);
+  digitalWrite(LPIN1, LOW);
+  digitalWrite(LPIN2, LOW);
+  return 0;
+}
+
+/*
+move robot forward one UNIT
+*/
+int moveForwardBig() {
+  delay(200);
+  digitalWrite(RPIN1, HIGH);
+  digitalWrite(RPIN2, LOW);
+  digitalWrite(LPIN1, LOW);
+  digitalWrite(LPIN2, HIGH);
+  delay(400);
+  
+  digitalWrite(RPIN1, LOW);
+  digitalWrite(RPIN2, HIGH);
+  digitalWrite(LPIN1, HIGH);
+  digitalWrite(LPIN2, LOW);
+  delay(2);
+  
+  digitalWrite(RPIN1, LOW);
+  digitalWrite(RPIN2, LOW);
+  digitalWrite(LPIN1, LOW);
+  digitalWrite(LPIN2, LOW);
+  return 0;
+}
+
+/*
+move the robot backwards half UNIT
+*/
+int moveBackSmall() {
+     delay(200);
+    digitalWrite(RPIN1, LOW);
+    digitalWrite(RPIN2, HIGH);
+    digitalWrite(LPIN1, HIGH);
+    digitalWrite(LPIN2, LOW);
+    delay(200);
+    
+    digitalWrite(RPIN1, HIGH);
+    digitalWrite(RPIN2, LOW);
+    digitalWrite(LPIN1, LOW);
+    digitalWrite(LPIN2, HIGH);
+    delay(2);
+    
+    digitalWrite(RPIN1, LOW);
+    digitalWrite(RPIN2, LOW);
+    digitalWrite(LPIN1, LOW);
+    digitalWrite(LPIN2, LOW);
+  return 0;
+}
+
+/*
+move the robot back one UNIT
+*/
+int moveBackBig() {
+     delay(400);
+    digitalWrite(RPIN1, LOW);
+    digitalWrite(RPIN2, HIGH);
+    digitalWrite(LPIN1, HIGH);
+    digitalWrite(LPIN2, LOW);
+    delay(450);
+    
+    digitalWrite(RPIN1, HIGH);
+    digitalWrite(RPIN2, LOW);
+    digitalWrite(LPIN1, LOW);
+    digitalWrite(LPIN2, HIGH);
+    delay(2);
+    
+    digitalWrite(RPIN1, LOW);
+    digitalWrite(RPIN2, LOW);
+    digitalWrite(LPIN1, LOW);
+    digitalWrite(LPIN2, LOW);
+}
+
+
+void moveMarker(int pos) {
+ // Serial.println(command);
+  if (pos == 1) { // up
+    //Serial.println("move 0");
+
+    myservo.write(30);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+     // }
+  } else { // down
+    myservo.write(95);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+    //  }
+  }
+
+}
