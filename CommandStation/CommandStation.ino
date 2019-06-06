@@ -14,6 +14,7 @@ String commandString;
 char currentChar = '0';
 bool charIncoming;
 byte data;
+bool rdy = 0;
 
 #define ERROR (250)
 #define START (253)
@@ -30,6 +31,7 @@ byte data;
 
 void setup() 
 {
+  delay(500);
   BTSerial.begin(38400);
   pinMode(ledPin, OUTPUT);
   digitalWrite(ledPin, LOW);
@@ -37,6 +39,8 @@ void setup()
   digitalWrite(buttonPin, HIGH);
   Serial.begin(9600);
   busy = 0;
+  Serial.println("WAIT FOR FANS TO CALIBRATE");
+  delay(500);
 }
 
 
@@ -47,6 +51,7 @@ void loop() {
     unsigned int length = commandString.length();  
     char char_arr[length];    
     commandString.toCharArray(char_arr, length);
+    
     if (commandString == "RESET"){
       busy = 0;
     } else if (commandString.equals("STATUS")) {
@@ -88,10 +93,13 @@ void loop() {
     
     // Checks whether data is comming from the serial port
     data = BTSerial.read(); // Reads the data from the serial port
-
+    if (data == READY) {
+      Serial.println("SYSTEM READY");
+      rdy = 1;
+    }
     Serial.print("..................................................recieved: ");
     Serial.println(data);
-
+  
     if (data == CHAR_INCOMING) {
       charIncoming = 1;
     } else if (charIncoming) {

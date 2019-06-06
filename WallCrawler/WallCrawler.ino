@@ -32,6 +32,8 @@ Servo myservo;  // create servo object to control a servo
 // twelve servo objects can be created on most boards
 Servo firstESC, secondESC, thirdESC, fourthESC;
 
+bool rdy = 0;
+
 void setup() {
     //marker servo
     myservo.attach(18);  // attaches the servo on pin 23 to the servo object
@@ -80,6 +82,7 @@ void setup() {
     fourthESC.writeMicroseconds(1010);
     delay(5000);    
     BTSerial.write(READY);
+    rdy = 1;
     Serial.println("SYSTEM READY");
 }
 
