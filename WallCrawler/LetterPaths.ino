@@ -1,4 +1,5 @@
 int drawA() {
+  Serial.println("A");
 
     moveMarker(1);
     moveForwardBig();
@@ -23,6 +24,7 @@ int drawA() {
 }
 
 int drawB() {
+  Serial.println("B");
     moveMarker(1);
     moveForwardBig();
     turn90();
@@ -50,6 +52,8 @@ int drawB() {
 }
 
 int drawC() {
+    Serial.println("C");
+
     moveMarker(1);
     moveForwardBig();
     turn90();

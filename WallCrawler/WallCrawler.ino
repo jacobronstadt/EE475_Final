@@ -17,25 +17,36 @@ robot faces up after completing
 #define START (253)
 #define END (254)
 #define STATUS (252)
-
+#define ABORT (222)
+#define CHAR_INCOMING (251)
+#define ON (241)//fans on 
+#define OFF (240)//fans off
+//ESC control signals
+#define MIN (1000)
+#define MAX (2000)
+#define READY (230)
 
 //#include <SoftwareSerial.h>
 #define BTSerial (Serial2)
 Servo myservo;  // create servo object to control a servo
 // twelve servo objects can be created on most boards
+Servo firstESC, secondESC, thirdESC, fourthESC;
 
 void setup() {
-    myservo.attach(23);  // attaches the servo on pin 23 to the servo object
+    //marker servo
+    myservo.attach(18);  // attaches the servo on pin 23 to the servo object
     myservo.write(130);
-
-    //pinMode(4, OUTPUT);
+    //fans ESC
+    firstESC.attach(3); 
+    secondESC.attach(4);// 
+    thirdESC.attach(5); 
+    fourthESC.attach(6);
+    
     pinMode(14, OUTPUT);
     pinMode(15, OUTPUT);
     pinMode(16, OUTPUT);
     pinMode(17, OUTPUT);
   
-    
-    //digitalWrite(4,LOW);
     digitalWrite(14,LOW);
     digitalWrite(15,LOW);
     digitalWrite(16,LOW);
@@ -43,9 +54,39 @@ void setup() {
     BTSerial.begin(38400);
     Serial1.begin(9600);
     
+    //calibrate fans
+    delay(2000);
+    Serial.println("WAIT FOR FANS TO CALIBRATE");
+    firstESC.writeMicroseconds(MAX);
+    secondESC.writeMicroseconds(MAX);
+    thirdESC.writeMicroseconds(MAX);
+    fourthESC.writeMicroseconds(MAX);
+    Serial.println("calibrate max");
+    
+    delay(10000);
+    
+    firstESC.writeMicroseconds(MIN);
+    secondESC.writeMicroseconds(MIN);
+    thirdESC.writeMicroseconds(MIN);
+    fourthESC.writeMicroseconds(MIN);
+    Serial.println("calibrate min");
+    
+    delay(4000);
+    
+    Serial.println("arm fan motors");
+    firstESC.writeMicroseconds(1010);
+    secondESC.writeMicroseconds(1010);
+    thirdESC.writeMicroseconds(1010);
+    fourthESC.writeMicroseconds(1010);
+    delay(5000);    
+    BTSerial.write(READY);
+    Serial.println("SYSTEM READY");
 }
 
 int decodeCommand(char command) {
+    BTSerial.write(CHAR_INCOMING);
+    BTSerial.write(command);
+    Serial.println("switch");   
         switch (command) {
             case 'A':
                 drawA();
@@ -162,18 +203,33 @@ int decodeCommand(char command) {
 }
 
 
-
-   
 byte command;
 int i = 0;
 char commandArr[5] = {0,0,0,0,0};
 int sysTime;
+int speed1 = 1200;
 
 void loop() {
   sysTime = millis();
   if(BTSerial.available() > 0 ){
       command = BTSerial.read();
+      Serial.println("command: ");
+      Serial.println(command);
       
+    if (command == ON) {
+      firstESC.writeMicroseconds(speed1);
+      secondESC.writeMicroseconds(speed1);
+      thirdESC.writeMicroseconds(speed1);
+      fourthESC.writeMicroseconds(speed1);
+      delay(500);
+    }
+    if (command == OFF) {
+        Serial.println("off");
+        firstESC.writeMicroseconds(MIN);
+        secondESC.writeMicroseconds(MIN);
+        thirdESC.writeMicroseconds(MIN);
+        fourthESC.writeMicroseconds(MIN);
+    }
     
     if (command == START) {
       //start
@@ -191,9 +247,8 @@ void loop() {
        Serial.print("Writing: ");
        for (int j=0; j < i; j++){
            int letterDone = 0;
-          //decodeCommand(commandArr[j]);
-          // letterDone = decodeCommand(commandArr[j]);
-          Serial.print(commandArr[j]);
+          letterDone = decodeCommand(commandArr[j]);
+          //Serial.print(commandArr[j]);
           if(letterDone == 1) {
             BTSerial.write(ERROR);
           }
@@ -207,7 +262,7 @@ void loop() {
        String str(commandArr);
        Serial.print("string: ");
        Serial.println(str);
-       commands(str);
+      // commands(str);
        Serial.println();
        Serial.println();
         
