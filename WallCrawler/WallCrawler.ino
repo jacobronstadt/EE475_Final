@@ -21,6 +21,10 @@ robot faces up after completing
 #define CHAR_INCOMING (251)
 #define ON (241)//fans on 
 #define OFF (240)//fans off
+#define INCR (239)
+#define DECR (238)
+
+
 //ESC control signals
 #define MIN (1000)
 #define MAX (2000)
@@ -233,6 +237,20 @@ void loop() {
         thirdESC.writeMicroseconds(MIN);
         fourthESC.writeMicroseconds(MIN);
     }
+    if (command == INCR) {
+      speed1 += 100;
+      firstESC.writeMicroseconds(speed1);
+      secondESC.writeMicroseconds(speed1);
+      thirdESC.writeMicroseconds(speed1);
+      fourthESC.writeMicroseconds(speed1);
+    } 
+    if (command == DECR) {
+      speed1 -= 100;     
+      firstESC.writeMicroseconds(speed1);
+      secondESC.writeMicroseconds(speed1);
+      thirdESC.writeMicroseconds(speed1);
+      fourthESC.writeMicroseconds(speed1);
+    }
     
     if (command == START) {
       //start
@@ -250,7 +268,9 @@ void loop() {
        Serial.print("Writing: ");
        for (int j=0; j < i; j++){
            int letterDone = 0;
-          letterDone = decodeCommand(commandArr[j]);
+           Serial.println(commandArr[j]);
+          //letterDone = decodeCommand(commandArr[j]);
+          delay(500);
           //Serial.print(commandArr[j]);
           if(letterDone == 1) {
             BTSerial.write(ERROR);
@@ -265,7 +285,7 @@ void loop() {
        String str(commandArr);
        Serial.print("string: ");
        Serial.println(str);
-      // commands(str);
+       commands(str);
        Serial.println();
        Serial.println();
         

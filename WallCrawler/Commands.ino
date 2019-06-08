@@ -58,9 +58,9 @@ void commands(String command) {
        digitalWrite(LPIN1, HIGH);
        digitalWrite(LPIN2, LOW);
     } else if (command.equals("mu")) {
-      moveMarker(0);
-    } else if (command.equals("md")) {
       moveMarker(1);
+    } else if (command.equals("md")) {
+      moveMarker(0);
     } else if (command.equals("A")) {
       drawA();
       
@@ -77,7 +77,7 @@ int turn180() {
   digitalWrite(RPIN2, HIGH);
   digitalWrite(LPIN1, HIGH);
   digitalWrite(LPIN2, LOW);
-  delay(900);
+  delay(1800);
   
   digitalWrite(RPIN1, HIGH);
   digitalWrite(RPIN2, LOW);
@@ -101,7 +101,7 @@ int turn90() {
   digitalWrite(RPIN2, HIGH);
   digitalWrite(LPIN1, HIGH);
   digitalWrite(LPIN2, LOW);
-  delay(450);
+  delay(900);
   
   digitalWrite(RPIN1, HIGH);
   digitalWrite(RPIN2, LOW);
@@ -126,7 +126,7 @@ int turn90Neg() {
   digitalWrite(RPIN2, HIGH);
   digitalWrite(LPIN1, HIGH);
   digitalWrite(LPIN2, LOW);
-  delay(450);
+  delay(900);
   
   digitalWrite(RPIN1, HIGH);
   digitalWrite(RPIN2, LOW);
@@ -150,7 +150,7 @@ int turn45() {
   digitalWrite(RPIN2, LOW);
   digitalWrite(LPIN1, LOW);
   digitalWrite(LPIN2, HIGH);
-  delay(225);
+  delay(450);
   
   digitalWrite(RPIN1, LOW);
   digitalWrite(RPIN2, HIGH);
@@ -174,7 +174,7 @@ int turn45Neg() {
   digitalWrite(RPIN2, HIGH);
   digitalWrite(LPIN1, HIGH);
   digitalWrite(LPIN2, LOW);
-  delay(225);
+  delay(450);
   
   digitalWrite(RPIN1, HIGH);
   digitalWrite(RPIN2, LOW);
@@ -199,7 +199,7 @@ int moveForwardSmall() {
   digitalWrite(RPIN2, HIGH);
   digitalWrite(LPIN1, LOW);
   digitalWrite(LPIN2, HIGH);
-  delay(200);
+  delay(400);
   
   digitalWrite(RPIN1, HIGH);
   digitalWrite(RPIN2, LOW);
@@ -223,7 +223,7 @@ int moveForwardBig() {
   digitalWrite(RPIN2, HIGH);
   digitalWrite(LPIN1, LOW);
   digitalWrite(LPIN2, HIGH);
-  delay(400);
+  delay(800);
   
   digitalWrite(RPIN1, HIGH);
   digitalWrite(RPIN2, LOW);
@@ -287,17 +287,17 @@ int moveBackBig() {
 
 
 void moveMarker(int pos) {
- // Serial.println(command);
-//  if (pos == 1) { // up
-//    //Serial.println("move 0");
-//
-//    myservo.write(30);              // tell servo to go to position in variable 'pos'
-//    delay(15);                       // waits 15ms for the servo to reach the position
-//     // }
-//  } else { // down
-//    myservo.write(95);              // tell servo to go to position in variable 'pos'
-//    delay(15);                       // waits 15ms for the servo to reach the position
-//    //  }
-//  }
+  Serial.println(command);
+  if (pos == 1) { // down
+    //Serial.println("move 0");
+
+    myservo.write(35);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+     // }
+  } else { // up
+    myservo.write(130);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+    //  }
+  }
 
 }

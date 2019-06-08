@@ -15,6 +15,7 @@ char currentChar = '0';
 bool charIncoming;
 byte data;
 bool rdy = 0;
+int speed1 = 1200;
 
 #define ERROR (250)
 #define START (253)
@@ -28,6 +29,8 @@ bool rdy = 0;
 #define MIN (1000)
 #define MAX (2000)
 #define READY (230)
+#define INCR (239)
+#define DECR (238)
 
 void setup() 
 {
@@ -54,16 +57,31 @@ void loop() {
     
     if (commandString == "RESET"){
       busy = 0;
+      speed1 = 1200;
     } else if (commandString.equals("STATUS")) {
           if (busy) {
             Serial.println("SYSTEM BUSY");
+            Serial.print("Drawing: ");
+            Serial.println(commandString);
           } else {
             
           }
     } else if (commandString.equals("ON")) {
-      BTSerial.write(ON); 
+        BTSerial.write(ON);
+        Serial.println(speed1);
     } else if (commandString.equals("OFF")) {
-      BTSerial.write(OFF);   
+        BTSerial.write(OFF);   
+        Serial.println("OFF");
+
+    } else if (commandString.equals("INCR")) {
+        BTSerial.write(INCR);
+        speed1 += 100;
+        Serial.println(speed1);
+    } else if (commandString.equals("DECR")) {
+        BTSerial.write(DECR);
+        speed1 -= 100;
+        Serial.println(speed1);
+        
     }
     else {
       if (length > 5) {
