@@ -206,6 +206,7 @@ int decodeCommand(char command) {
             default:
                 return 1;
         }
+        moveMarker(0);
     return 0;
 }
 
@@ -269,13 +270,16 @@ void loop() {
        for (int j=0; j < i; j++){
            int letterDone = 0;
            Serial.println(commandArr[j]);
-          //letterDone = decodeCommand(commandArr[j]);
+          letterDone = decodeCommand(commandArr[j]);
           delay(500);
-          //Serial.print(commandArr[j]);
+          Serial.print(commandArr[j]);
           if(letterDone == 1) {
             BTSerial.write(ERROR);
           }
        }
+       for(int k = 0; k < 5; k++) {
+        commandArr[k] = 0;
+      }
        BTSerial.write(END);
       
        Serial.println(); 
@@ -285,7 +289,7 @@ void loop() {
        String str(commandArr);
        Serial.print("string: ");
        Serial.println(str);
-       commands(str);
+//       commands(str);
        Serial.println();
        Serial.println();
         

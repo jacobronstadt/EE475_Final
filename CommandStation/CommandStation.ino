@@ -64,7 +64,8 @@ void loop() {
             Serial.print("Drawing: ");
             Serial.println(commandString);
           } else {
-            
+            Serial.print("Previous Command: ");
+            Serial.println(commandString);
           }
     } else if (commandString.equals("ON")) {
         BTSerial.write(ON);
