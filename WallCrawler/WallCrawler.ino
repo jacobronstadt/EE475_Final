@@ -203,7 +203,7 @@ int decodeCommand(char command) {
             case '9':
                 draw9();
                 break;
-            default:
+            default:  
                 return 1;
         }
         moveMarker(0);
@@ -213,7 +213,7 @@ int decodeCommand(char command) {
 
 byte command;
 int i = 0;
-char commandArr[5] = {0,0,0,0,0};
+char commandArr[6] =  {0,0,0,0,0,0};
 int sysTime;
 int speed1 = 1200;
 
@@ -260,7 +260,7 @@ void loop() {
         commandArr[k] = 0;
       }
       i=0;
-    } else if(command == END) {
+    } else if (command == END) {
       //end
        Serial.println("transmission end");
       
@@ -268,8 +268,18 @@ void loop() {
        BTSerial.write(START);
        Serial.print("Writing: ");
        for (int j=0; j < i; j++){
-           int letterDone = 0;
-           Serial.println(commandArr[j]);
+             if(BTSerial.available() > 0 ){
+                byte abort = BTSerial.read();
+                if(abort == ABORT){
+                  for(int k = 0; k < 5; k++) {
+                    commandArr[k] = 0;
+                  }
+                  Serial.println("\nABORT");
+                  break;
+                }
+             }
+          int letterDone = 0;
+          Serial.println(commandArr[j]);
           letterDone = decodeCommand(commandArr[j]);
           delay(500);
           Serial.print(commandArr[j]);
@@ -282,35 +292,22 @@ void loop() {
       }
        BTSerial.write(END);
       
-       Serial.println(); 
-       Serial.println("length: ");
-       Serial.println(i);
+       //Serial.println(); 
+       //Serial.println("length: ");
+       //Serial.println(i);
       //---
-       String str(commandArr);
-       Serial.print("string: ");
-       Serial.println(str);
+//       String str(commandArr);
+       //Serial.print("string: ");
+       //Serial.println(str);
 //       commands(str);
        Serial.println();
        Serial.println();
         
-    } else {
-      commandArr[i] = command;
-      i++;
-    }
-
-    
-      
+      } else {
+        commandArr[i] = command;
+        i++;
+      } 
       Serial.print("recieved: ");
-      Serial.println(command);
-      
-  }
- 
-//    char* command;
-//
-//    while(1) {
-//        //get command from bluetooth
-//        decodeCommand(command);
-//
-//        //wait for next command
-//    }
+      Serial.println(command);  
+   }
 }

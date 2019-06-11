@@ -17,23 +17,6 @@ int drawA() {
     moveForwardBig();
     turn90();
     moveBackSmall();
-//    moveForwardBig();
-//    turn90();
-//    moveForwardSmall();
-//    turn90();
-//    moveForwardBig();
-//    moveMarker(0);
-//    moveBackSmall();
-//    turn90();
-//    moveMarker(1);
-//    moveForwardSmall();
-//    moveMarker(0);
-//    moveBackSmall();
-//    turn90Neg();
-//    moveForwardSmall();
-//    turn90Neg();
-//    moveForwardSmall();
-//    turn90Neg();
 
     return 0;
 }
@@ -60,30 +43,7 @@ int drawB() {
   moveMarker(0);
   moveBackBig();
   turn90Neg();
-//    moveMarker(1);
-//    moveForwardBig();
-//    turn90();
-//    moveForwardSmall();
-//    turn90();
-//    moveForwardBig();
-//    turn90();
-//    moveForwardSmall();
-//    moveMarker(0);
-//    moveBackSmall();
-//    turn90Neg();
-//    moveBackSmall();
-//    turn90();
-//    moveMarker(1);
-//    moveForwardSmall();
-//    moveMarker(0);
-//    moveBackSmall();
-//    turn90Neg();
-//    moveForwardSmall();
-//    turn90Neg();
-//    moveForwardSmall();
-//    turn90Neg();
-
-    return 0;
+  return 0;
 }
 
 int drawC() {
@@ -102,19 +62,6 @@ int drawC() {
     // resetting the orientation
     moveMarker(0);
     moveForwardSmall();
-//    moveForwardBig();
-//    turn90();
-//    moveForwardSmall();
-//    moveMarker(0);
-//    turn90();
-//    moveForwardBig();
-//    turn90();
-//    moveMarker(1);
-//    moveForwardSmall();
-//    moveMarker(0);
-//    turn180();
-//    moveForwardSmall();
-//    moveForwardSmall();
     turn90();
     moveBackBig();
     return 0;
@@ -140,28 +87,49 @@ int drawD() {
 }
 
 int drawE() {
-
-    moveMarker(1);
-    moveForwardBig();
-    turn90Neg();
-    moveForwardSmall();
-    moveMarker(0);
-    turn90Neg();
-    moveForwardSmall();
     turn90Neg();
     moveMarker(1);
     moveForwardSmall();
     moveMarker(0);
     moveBackSmall();
     turn90();
+    moveMarker(1);
+    moveForwardBig();
+    turn90Neg();
     moveForwardSmall();
+    moveMarker(0);
+    moveBackSmall();
+    turn90();
+    moveBackSmall();
     turn90Neg();
     moveMarker(1);
     moveForwardSmall();
+    
+    // resetting orientation
     moveMarker(0);
-    turn180();
     moveForwardSmall();
-    moveForwardSmall();
+    turn90();
+//    moveMarker(1);
+//    moveForwardBig();
+//    turn90Neg();
+//    moveForwardSmall();
+//    moveMarker(0);
+//    turn90Neg();
+//    moveForwardSmall();
+//    turn90Neg();
+//    moveMarker(1);
+//    moveForwardSmall();
+//    moveMarker(0);
+//    moveBackSmall();
+//    turn90();
+//    moveForwardSmall();
+//    turn90Neg();
+//    moveMarker(1);
+//    moveForwardSmall();
+//    moveMarker(0);
+//    turn180();
+//    moveForwardSmall();
+//    moveForwardSmall();
 
     return 0;
 }
@@ -216,26 +184,45 @@ int drawG() {
 }
 
 int drawH() {
-    moveMarker(1);
-    moveForwardBig();
-    moveMarker(0);
-    turn90Neg();
-    moveForwardSmall();
-    turn90Neg();
-    moveMarker(1);
-    moveForwardBig();
-    moveMarker(0);
-    moveBackSmall();
-    turn90Neg();
-    moveMarker(1);
-    moveForwardSmall();
-    moveMarker(0);
-    moveBackSmall();
-    turn90();
-    moveForwardSmall();
-    turn90();
-    moveForwardSmall();
-    turn90();
+  moveMarker(1);
+  moveForwardBig();
+  moveMarker(0);
+  moveBackSmall();
+  turn90Neg();
+  moveMarker(1);
+  moveForwardSmall();
+  moveMarker(0);
+  turn90();
+  moveMarker(1);
+  moveForwardSmall();
+  moveBackBig();
+
+  // resetting orientation
+  moveMarker(0);
+  turn90Neg();
+  moveForwardBig();
+  turn90();
+  
+//    moveMarker(1);
+//    moveForwardBig();
+//    moveMarker(0);
+//    turn90Neg();
+//    moveForwardSmall();
+//    turn90Neg();
+//    moveMarker(1);
+//    moveForwardBig();
+//    moveMarker(0);
+//    moveBackSmall();
+//    turn90Neg();
+//    moveMarker(1);
+//    moveForwardSmall();
+//    moveMarker(0);
+//    moveBackSmall();
+//    turn90();
+//    moveForwardSmall();
+//    turn90();
+//    moveForwardSmall();
+//    turn90();
 
     return 0;
 }
@@ -256,19 +243,35 @@ int drawI() {
 }
 
 int drawJ() {
-    moveForwardBig();
     turn90Neg();
     moveMarker(1);
     moveForwardSmall();
-    turn90Neg();
+    turn90();
     moveForwardBig();
     turn90Neg();
     moveForwardSmall();
-    moveMarker(0);
     moveBackSmall();
-    turn180();
-    moveForwardSmall();
+
+    // resetting orientation
+    moveMarker(0);
+    moveForwardBig();
     turn90();
+//    moveForwardSmall();
+//    turn90();
+
+//    moveForwardBig();
+//    turn90Neg();
+//    moveMarker(1);
+//    moveForwardSmall();
+//    turn90Neg();
+//    moveForwardBig();
+//    turn90Neg();
+//    moveForwardSmall();
+//    moveMarker(0);
+//    moveBackSmall();
+//    turn180();
+//    moveForwardSmall();
+//    turn90();
     return 0;
 }
 
@@ -279,7 +282,7 @@ int drawK() {
     moveForwardSmall();
     turn45();
     moveMarker(1);
-    moveBackBig();
+    moveBackSmall();
     moveMarker(0);
     moveForwardSmall();
     turn90Neg();
@@ -290,37 +293,36 @@ int drawK() {
     moveMarker(0);
     turn45Neg();
     moveForwardSmall();
-    
-    
-//    moveMarker(1);
-//    moveForwardBig();
-//    moveMarker(0);
-//    turn90();
-//    moveForwardSmall();
-//    turn90();
-//    turn45();
-//    moveMarker(1);
-//    moveForwardSmall();
-//    turn90Neg();
-//    moveForwardSmall();
-//    moveMarker(0);
-//    turn45Neg();
-//    moveForwardSmall();
-//    turn90Neg();
+    turn90();
     return 0;
 }
 
 int drawL() {
-    moveMarker(1);
-    moveForwardBig();
-    moveMarker(0);
-    moveBackBig();
-    turn90Neg();
-    moveMarker(1);
-    moveForwardSmall();
-    moveMarker(0);
-    moveForwardSmall();
-    turn90();
+  turn90Neg();
+  moveMarker(1);
+  moveForwardSmall();
+  moveMarker(0);
+  moveBackSmall();
+  turn90();
+  moveMarker(1);
+  moveForwardBig();
+
+  // resetting
+  moveMarker(0);
+  turn90Neg();
+  moveForwardBig();
+  turn90();
+  moveBackBig();
+//    moveMarker(1);
+//    moveForwardBig();
+//    moveMarker(0);
+//    moveBackBig();
+//    turn90Neg();
+//    moveMarker(1);
+//    moveForwardSmall();
+//    moveMarker(0);
+//    moveForwardSmall();
+//    turn90();
     return 0;
 }
 
@@ -363,20 +365,43 @@ int drawN() {
 }
 
 int drawO() {
+    turn90Neg();
     moveMarker(1);
-    moveForwardBig();
-    turn90Neg();
-    moveForwardSmall();
-    turn90Neg();
-    moveForwardBig();
-    turn90Neg();
     moveForwardSmall();
     moveMarker(0);
     moveBackSmall();
-    turn180();
+    turn90();
+    moveMarker(1);
+    moveForwardBig();
+    moveMarker(0);
+    turn90Neg();
+    moveMarker(1);
+    moveForwardSmall();
+    moveMarker(0);
+    turn90();
+    moveMarker(1);
+    moveBackBig();
+
+    // resetting orientation
+    moveMarker(0);
+    turn90Neg();
     moveForwardSmall();
     turn90();
     return 0;
+//    moveMarker(1);
+//    moveForwardBig();
+//    turn90Neg();
+//    moveForwardSmall();
+//    turn90Neg();
+//    moveForwardBig();
+//    turn90Neg();
+//    moveForwardSmall();
+//    moveMarker(0);
+//    moveBackSmall();
+//    turn180();
+//    moveForwardSmall();
+//    turn90();
+//    return 0;
 }
 
 int drawP() {
@@ -633,8 +658,9 @@ int draw1() {
     // resetting the orientation
     moveMarker(0);
     turn90Neg();
-    moveForwardSmall();
+    moveForwardBig();
     turn90();
+    moveBackBig();
 //    turn90();
 //    moveForwardSmall();
 //    turn90();
@@ -659,7 +685,7 @@ int draw2() {
     turn90();
     moveForwardSmall();
     moveMarker(0);
-    moveForwardSmall();
+    moveForwardBig();
     turn90();
     return 0;
 }
@@ -676,13 +702,14 @@ int draw3() {
     moveMarker(0);
     moveBackSmall();
     turn90();
+    moveMarker(1);
     moveForwardSmall();
     turn90Neg();
     moveForwardSmall();
     moveMarker(0);
     moveBackSmall();
     turn180();
-    moveForwardSmall();
+    moveForwardBig();
     turn90();
     return 0;
 }

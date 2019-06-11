@@ -55,9 +55,11 @@ void loop() {
     char char_arr[length];    
     commandString.toCharArray(char_arr, length);
     
-    if (commandString == "RESET"){
+    if (commandString == "RESET" || commandString == "ABORT"){
       busy = 0;
       speed1 = 1200;
+      BTSerial.write(ABORT);
+      Serial.println("TASK ABORTED");
     } else if (commandString.equals("STATUS")) {
           if (busy) {
             Serial.println("SYSTEM BUSY");
@@ -82,7 +84,6 @@ void loop() {
         BTSerial.write(DECR);
         speed1 -= 100;
         Serial.println(speed1);
-        
     }
     else {
       if (length > 5) {
